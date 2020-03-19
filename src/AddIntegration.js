@@ -12,6 +12,7 @@ import {
   Col,
   Badge
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export default class AddIntegration extends Component {
   state = {
@@ -40,7 +41,7 @@ export default class AddIntegration extends Component {
 
         <Row>
           {this.state.types.map(type => (
-            <Col>
+            <Col key={type.id}>
               <div>
                 <Card>
                   {/* <CardImg
@@ -58,7 +59,9 @@ export default class AddIntegration extends Component {
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </CardText>
-                    <Button color="success">Choose</Button>
+                    <Link to="/configuration">
+                      <Button color="success">Choose</Button>
+                    </Link>
                   </CardBody>
                 </Card>
               </div>

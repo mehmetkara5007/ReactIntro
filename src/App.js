@@ -12,6 +12,7 @@ import Login from "./Login";
 import myForm from "./myForm";
 import Dashboard from "./Dashboard";
 import AddIntegration from "./AddIntegration";
+import Configuration from "./Configuration";
 
 export default class App extends Component {
   state = {
@@ -49,17 +50,17 @@ export default class App extends Component {
       newCart.push({ client: client, quantity: 1 });
     }
     this.setState({ cart: newCart });
-    alertify.success(client.productName + " added", 2);
+    alertify.success( "Your log request is added", 2);
   };
 
   removeFromCart = client => {
     let newCart = this.state.cart.filter(c => c.client.id !== client.id);
     this.setState({ cart: newCart });
-    alertify.error(client.productName + " removed", 2);
+    alertify.error("Your request is removed", 2);
   };
 
   render() {
-    let clientInfo = { title: "Client List" };
+    let clientInfo = { title: "Visma Net" };
     let categoryInfo = { title: "Integration List" };
     return (
       <div>
@@ -102,7 +103,7 @@ export default class App extends Component {
                 />
                 <Route path="/addIntegration" component={AddIntegration} />
                 <Route path="/login" component={Login} />
-                <Route path="/myForm" component={myForm} />
+                <Route path="/Configuration" component={Configuration} />
                 <Route component={NotFound} />
               </Switch>
             </Col>

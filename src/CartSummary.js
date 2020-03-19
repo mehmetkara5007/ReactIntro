@@ -15,7 +15,7 @@ export default class CartSummary extends Component {
     return (
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret>
-          Options - {this.props.cart.length}
+          Request - {this.props.cart.length}
         </DropdownToggle>
         <DropdownMenu right>
           {this.props.cart.map(cartItem => (
@@ -26,13 +26,13 @@ export default class CartSummary extends Component {
               >
                 X
               </Badge>
-              {cartItem.client.productName} - 
+              {cartItem.client.quantityPerUnit} - 
               <Badge color="success"> {cartItem.quantity}</Badge>
             </DropdownItem>
           ))}
           <DropdownItem divider />
           <DropdownItem>
-              <Link to="cart"> go to cart
+              <Link to="cart"> go to request list
               </Link>
           </DropdownItem>
         </DropdownMenu>
@@ -43,7 +43,7 @@ export default class CartSummary extends Component {
   renderEmptyCart() {
     return (
       <NavItem>
-        <NavLink>Empty cart</NavLink>
+        <NavLink></NavLink>
       </NavItem>
     );
   }

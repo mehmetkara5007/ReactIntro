@@ -12,7 +12,7 @@ export default class IntegrationList extends Component {
   }
 
   getIntegrations = () => {
-    fetch("http://localhost:3000/categories")
+    fetch("http://localhost:3000/integrations")
       .then(response => response.json())
       .then(data => this.setState({ categories: data }));
   };

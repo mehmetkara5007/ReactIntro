@@ -36,7 +36,7 @@ export default class Navi extends React.Component {
           <Collapse isOpen={this.isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-              <NavLink href="myForm">Form</NavLink>
+              <NavLink href="clients">Details</NavLink>
               </NavItem>
               <NavItem>
               <NavLink href="Login">Login</NavLink>
@@ -46,7 +46,7 @@ export default class Navi extends React.Component {
                 cart={this.props.cart}
               />
             </Nav>
-            <NavbarText>Simple Text</NavbarText>
+            <NavbarText>LogOut</NavbarText>
           </Collapse>
         </Navbar>
       </div>

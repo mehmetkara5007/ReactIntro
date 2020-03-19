@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Table } from "reactstrap";
+import { Table, Button } from "reactstrap";
 
 export default class ClientList extends Component {
+
   render() {
     return (
       <div>
@@ -17,6 +18,7 @@ export default class ClientList extends Component {
               <th>Last Name</th>
               <th>Username</th>
               <th>Username</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +29,11 @@ export default class ClientList extends Component {
                 <td>{client.unitPrice}</td>
                 <td>{client.quantityPerUnit}</td>
                 <td>@{client.unitsInStock}</td>
+                <td>
+                  <Button onClick={() => this.props.addChart(client)} color="info">
+                    add
+                  </Button>
+                </td>
               </tr>
             ))}
 

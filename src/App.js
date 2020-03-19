@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Navi from "./Navi";
-import CategoryList from "./CategoryList";
 import IntegrationList from "./IntegrationList";
 import ClientList from "./ClientList";
 import NotFound from "./NotFound";
@@ -9,7 +8,6 @@ import { Container, Row, Col } from "reactstrap";
 import alertify from "alertifyjs";
 import { Route, Switch } from "react-router-dom";
 import Login from "./Login";
-import myForm from "./myForm";
 import Dashboard from "./Dashboard";
 import AddIntegration from "./AddIntegration";
 import Configuration from "./Configuration";

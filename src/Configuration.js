@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Collapse, Button, CardBody, Card } from "reactstrap";
-import { Row, Container, Col, Badge, Table } from "reactstrap";
+import { Row, Container, Col, Badge } from "reactstrap";
 
 const Example = props => {
   const [isOpen, setIsOpen] = useState(false);

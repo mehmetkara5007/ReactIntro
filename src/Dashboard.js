@@ -10,7 +10,6 @@ export default class Dashboard extends Component {
             <div>
               <h2>Hello, Mehmet</h2>
               <h4>
-                {" "}
                 You have <Badge color="success">4</Badge> running integrations
               </h4>
               <h4>

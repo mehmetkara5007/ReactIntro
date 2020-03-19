@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Collapse,
   Navbar,
@@ -7,50 +7,49 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   NavbarText
 } from "reactstrap";
 
-const Navi = props => {
-  const [isOpen, setIsOpen] = useState(false);
+import CartSummary from "./CartSummary";
 
-  const toggle = () => setIsOpen(!isOpen);
+export default class Navi extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
-            </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-          <NavbarText>Simple Text</NavbarText>
-        </Collapse>
-      </Navbar>
-    </div>
-  );
-};
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
 
-export default Navi;
+  render() {
+    return (
+      <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Dashboard</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+              <NavLink href="myForm">Form</NavLink>
+              </NavItem>
+              <NavItem>
+              <NavLink href="Login">Login</NavLink>
+              </NavItem>
+              <CartSummary
+                removeFromCart={this.props.removeFromCart}
+                cart={this.props.cart}
+              />
+            </Nav>
+            <NavbarText>Simple Text</NavbarText>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+  }
+}

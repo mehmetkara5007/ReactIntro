@@ -20,7 +20,7 @@ export default class Dashboard extends Component {
         </Row>
         <Row>
           <Col>
-          <h3></h3>
+          <h3>DANGER</h3>
           <h3>Errors</h3>
           </Col>
         </Row>

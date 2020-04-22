@@ -1,20 +1,21 @@
 import React, { Component } from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
+import { ListGroup, ListGroupItem, Badge, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export default class CategoryList extends Component {
   state = {
-   products:[]
+    categories: []
   };
 
-  componentDidMount(){
+  componentDidMount() {
     this.getCategories();
   }
 
-  getCategories = ()=>{
-      fetch("http://localhost:3000/categories")
-      .then(response=>response.json())
-      .then(data=>this.setState({categories:data}));
-  }
+  getCategories = () => {
+    fetch("http://localhost:3000/categories")
+      .then(response => response.json())
+      .then(data => this.setState({ categories: data }));
+  };
 
   render() {
     return (
@@ -22,14 +23,25 @@ export default class CategoryList extends Component {
         <h2>{this.props.info.title}</h2>
         <ListGroup>
           {this.state.categories.map(category => (
-            <ListGroupItem active = {category.categoryName === this.props.currentCategory?true:false}
+            <ListGroupItem
+              active={
+                category.categoryName === this.props.currentCategory
+                  ? true
+                  : false
+              }
               onClick={() => this.props.changeCategory(category)}
               key={category.id}
             >
-              {category.categoryName}
+              <Badge color="success">√ </Badge> {category.categoryName}
             </ListGroupItem>
           ))}
         </ListGroup>
+
+        <Link to="/addCategory">
+          <Button outline color="info" size="lg" block>
+            Add Category
+          </Button>
+        </Link>
       </div>
     );
   }

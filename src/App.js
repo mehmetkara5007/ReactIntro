@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Navi from "./Navi";
-import IntegrationList from "./IntegrationList";
-import ClientList from "./ClientList";
+import ProductList from "./ProductList";
 import NotFound from "./NotFound";
 import CartList from "./CartList";
 import { Container, Row, Col } from "reactstrap";
@@ -11,54 +10,55 @@ import Login from "./Login";
 import Dashboard from "./Dashboard";
 import AddIntegration from "./AddIntegration";
 import Configuration from "./Configuration";
+import CategoryList from "./CategoryList";
 
 export default class App extends Component {
   state = {
     currentCategory: "",
-    clients: [],
+    products: [],
     cart: []
   };
 
   componentDidMount() {
-    this.getClients();
+    this.getProducts();
   }
 
   changeCategory = category => {
     this.setState({ currentCategory: category.categoryName });
-    this.getClients(category.id);
+    this.getProducts(category.id);
   };
 
-  getClients = categoryId => {
+  getProducts = categoryId => {
     let url = "http://localhost:3000/products";
     if (categoryId) {
       url += "?categoryId=" + categoryId;
     }
     fetch(url)
       .then(response => response.json())
-      .then(data => this.setState({ clients: data }));
+      .then(data => this.setState({ products: data }));
   };
 
 
-  addChart = client => {
+  addChart = product => {
     let newCart = this.state.cart;
-    var addedItem = newCart.find(c => c.client.id === client.id);
+    var addedItem = newCart.find(c => c.product.id === product.id);
     if (addedItem) {
       addedItem.quantity += 1;
     } else {
-      newCart.push({ client: client, quantity: 1 });
+      newCart.push({ product: product, quantity: 1 });
     }
     this.setState({ cart: newCart });
     alertify.success( "Your log request is added", 2);
   };
 
-  removeFromCart = client => {
-    let newCart = this.state.cart.filter(c => c.client.id !== client.id);
+  removeFromCart = product => {
+    let newCart = this.state.cart.filter(c => c.product.id !== product.id);
     this.setState({ cart: newCart });
     alertify.error("Your request is removed", 2);
   };
 
   render() {
-    let clientInfo = { title: "Visma Net" };
+    let productInfo = { title: "Visma Net" };
     let categoryInfo = { title: "Integration List" };
     return (
       <div>
@@ -66,7 +66,7 @@ export default class App extends Component {
           <Navi removeFromCart={this.removeFromCart} cart={this.state.cart} />
           <Row>
             <Col xs="3">
-              <IntegrationList
+              <CategoryList
                 currentCategory={this.state.currentCategory}
                 changeCategory={this.changeCategory}
                 info={categoryInfo}
@@ -77,14 +77,14 @@ export default class App extends Component {
                 <Route exact path="/" component={Dashboard} />
                 <Route
                   exact
-                  path="/clients"
+                  path="/products"
                   render={props => (
-                    <ClientList
+                    <ProductList
                       {...props}
-                      clients={this.state.clients}
+                      products={this.state.products}
                       addChart={this.addChart}
                       currentCategory={this.state.currentCategory}
-                      info={clientInfo}
+                      info={productInfo}
                     />
                   )}
                 />

@@ -16,15 +16,15 @@ export default class CartList extends Component {
         </thead>
         <tbody>
           {this.props.cart.map(cartItem => (
-            <tr key={cartItem.client.id}>
-              <td>{cartItem.client.id} - 2020</td>
-              <td>{cartItem.client.categoryId}</td>
-              <td>{cartItem.client.unitPrice}</td>
-              <td>{cartItem.client.unitsInStock}</td>
+            <tr key={cartItem.product.id}>
+              <td>{cartItem.product.id} - 2020</td>
+              <td>{cartItem.product.categoryId}</td>
+              <td>{cartItem.product.unitPrice}</td>
+              <td>{cartItem.product.unitsInStock}</td>
               <td>
                 <Button
                   color="danger"
-                  onClick={() => this.props.removeFromCart(cartItem.client)}
+                  onClick={() => this.props.removeFromCart(cartItem.product)}
                 >
                   Remove Request
                 </Button>

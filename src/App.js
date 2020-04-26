@@ -58,7 +58,7 @@ export default class App extends Component {
   };
 
   render() {
-    let productInfo = { title: "Visma Net" };
+    let productInfo = { title: "Visma Net Loan" };
     let categoryInfo = { title: "Integration List" };
     return (
       <div>
